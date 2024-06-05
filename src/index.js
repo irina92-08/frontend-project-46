@@ -18,8 +18,8 @@ const gendiff = (filepath1, filepath2) => {
   const arrayExtension = getArrayExtension(parseFile1, parseFile2);
   
   const result = ['{', stringiFy(arrayExtension), '}'].join('\n');
-  console.log(result);
-  return;
+  
+  return result;
 };
 
 export default gendiff;
