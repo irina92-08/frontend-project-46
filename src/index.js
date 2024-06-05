@@ -16,9 +16,9 @@ const gendiff = (filepath1, filepath2) => {
   const parseFile2 = parse(fs.readFileSync(fullPathFile2, 'utf8'), extensionPathFile2);
 
   const arrayExtension = getArrayExtension(parseFile1, parseFile2);
-  
+
   const result = ['{', stringiFy(arrayExtension), '}'].join('\n');
-  
+
   return result;
 };
 
