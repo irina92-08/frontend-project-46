@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
-import { parse, getArrayExtension, stringiFy } from './utils.js';
+import { getArrayExtension, stringiFy } from './utils.js';
+import parse from './parsers.js';
 
 const getPath = (filepath) => path.resolve(process.cwd(), filepath);
 const extensionPath = (filepath) => path.extname(filepath).slice(1);

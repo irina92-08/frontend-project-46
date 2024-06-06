@@ -1,15 +1,4 @@
-import yaml from 'js-yaml';
 import _ from 'lodash';
-
-export const parse = (data, extension) => {
-  const extensionColl = {
-    json: JSON.parse,
-    yaml: yaml.load,
-    yml: yaml.load,
-  };
-
-  return extensionColl[extension](data);
-};
 
 export const getArrayExtension = (data1, data2) => {
   const keyValueData1 = Object.keys(data1);
