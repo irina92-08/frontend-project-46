@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { getArrayExtension, stringiFy } from './utils.js';
+import { getArrayExtension, stailish } from './utils.js';
 import parse from './parsers.js';
 
 const getPath = (filepath) => path.resolve(process.cwd(), filepath);
@@ -18,7 +18,7 @@ const gendiff = (filepath1, filepath2) => {
 
   const arrayExtension = getArrayExtension(parseFile1, parseFile2);
 
-  const result = ['{', stringiFy(arrayExtension), '}'].join('\n');
+  const result = ['{', stailish(arrayExtension), '}'].join('\n');
   console.log(result);
   return result;
 };

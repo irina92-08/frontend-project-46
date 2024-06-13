@@ -7,11 +7,6 @@ export const getArrayExtension = (data1, data2) => {
 
   const collData = union.reduce((acc, key) => {
     if (!Object.hasOwn(data1, key)) {
-      if (_.isObject(data2[key])) {
-        return [...acc, {
-          key, value: getArrayExtension(data2[key], {}), status: 'nested', format: '+',
-        }];
-      }
       return [...acc, {
         key, value: data2[key], status: 'added', format: '+',
       }];
@@ -22,6 +17,12 @@ export const getArrayExtension = (data1, data2) => {
       }];
     }
     if (data1[key] !== data2[key]) {
+      if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+        return [...acc, {
+          key, value: getArrayExtension(data1[key], data2[key]), status: 'nested', format: ' ',
+        }];
+      }
+
       return [...acc, {
         key, value: data1[key], status: 'changed', format: '-',
       },
@@ -37,17 +38,28 @@ export const getArrayExtension = (data1, data2) => {
   return _.sortBy(collData, ({ key }) => key);
 };
 
-export const stringiFy = (arrayData) => arrayData.map((extensionDate) => {
-  const isNested = extensionDate.status === 'nested';
-  let resultKeyValue;
-  if (isNested) {
-    resultKeyValue = ` ${extensionDate.format} ${extensionDate.key}: 
-    {${stringiFy(extensionDate.value)}}`;
-  
-  }else {
-    resultKeyValue = ` ${extensionDate.format} ${extensionDate.key}: ${extensionDate.value}`;
-  }
-  
-  
-  return resultKeyValue;
-}).join('\n');
+const stringiFy = (data, depthData) => {
+  const iter = (node, depth) => {
+    if (!_.isObject(node)) {
+      return node;
+    }
+
+    const nodeKeyValue = Object.entries(node);
+    const repeatSymbol = ' '.repeat(depth);
+    const string = nodeKeyValue.map(([key, value]) => `\n   ${repeatSymbol} ${key}: ${iter(value, depth + 4)}`);
+    return ['{', ...string, `\n${repeatSymbol}}`].join('');
+  };
+  return iter(data, depthData + 2);
+};
+
+export const stailish = (arrayData) => {
+  const iter = (node, depth) => node.map((data) => {
+    const isNested = data.status === 'nested';
+    const repeat = ' '.repeat(depth);
+    if (!isNested) {
+      return `${repeat}${data.format} ${data.key}: ${stringiFy(data.value, depth)}`;
+    }
+    return `${repeat}${data.format} ${data.key}: {\n${iter(data.value, depth + 4)}\n${repeat}  }`;
+  }).join('\n');
+  return iter(arrayData, 2);
+};
