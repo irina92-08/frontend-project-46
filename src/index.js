@@ -17,13 +17,12 @@ const gendiff = (filepath1, filepath2, formatter = 'stylish') => {
   const parseFile2 = parse(fs.readFileSync(fullPathFile2, 'utf8'), extensionPathFile2);
 
   const arrayExtension = getArrayExtension(parseFile1, parseFile2);
-  
-  if(formatter === 'stylish'){
-    const result = ['{', stylish(arrayExtension), '}'].join('\n');
-    
-    return result;
+
+  let result;
+  if (formatter === 'stylish') {
+    result = ['{', stylish(arrayExtension), '}'].join('\n');
   }
-  
+  return result;
 };
 
 export default gendiff;
