@@ -1,12 +1,12 @@
 import path from 'path';
 import fs from 'fs';
-import { getArrayExtension, stailish } from './utils.js';
+import { getArrayExtension, stylish } from './utils.js';
 import parse from './parsers.js';
 
 const getPath = (filepath) => path.resolve(process.cwd(), filepath);
 const extensionPath = (filepath) => path.extname(filepath).slice(1);
 
-const gendiff = (filepath1, filepath2) => {
+const gendiff = (filepath1, filepath2, formatter = 'stylish') => {
   const fullPathFile1 = getPath(filepath1);
   const fullPathFile2 = getPath(filepath2);
 
@@ -17,10 +17,13 @@ const gendiff = (filepath1, filepath2) => {
   const parseFile2 = parse(fs.readFileSync(fullPathFile2, 'utf8'), extensionPathFile2);
 
   const arrayExtension = getArrayExtension(parseFile1, parseFile2);
-
-  const result = ['{', stailish(arrayExtension), '}'].join('\n');
-  console.log(result);
-  return result;
+  
+  if(formatter === 'stylish'){
+    const result = ['{', stylish(arrayExtension), '}'].join('\n');
+    
+    return result;
+  }
+  
 };
 
 export default gendiff;

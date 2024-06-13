@@ -52,7 +52,7 @@ const stringiFy = (data, depthData) => {
   return iter(data, depthData + 2);
 };
 
-export const stailish = (arrayData) => {
+export const stylish = (arrayData) => {
   const iter = (node, depth) => node.map((data) => {
     const isNested = data.status === 'nested';
     const repeat = ' '.repeat(depth);
