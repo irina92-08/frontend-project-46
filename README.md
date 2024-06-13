@@ -8,5 +8,5 @@
 Сomparison of two flat files with the extension .yml, .yaml
 [![asciicast](https://asciinema.org/a/rWp6GU1cBrdN6WKBMsDiMxaY3.png)](https://asciinema.org/a/rWp6GU1cBrdN6WKBMsDiMxaY3)
 
-Comparison of two files with a nested structure of different pharmacy
+Comparison of two files with a nested structure of different formats
 [![asciicast](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R.png)](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R)
