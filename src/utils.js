@@ -7,6 +7,11 @@ export const getArrayExtension = (data1, data2) => {
 
   const collData = union.reduce((acc, key) => {
     if (!Object.hasOwn(data1, key)) {
+      if (_.isObject(data2[key])) {
+        return [...acc, {
+          key, value: getArrayExtension(data2[key], {}), status: 'nested', format: '+',
+        }];
+      }
       return [...acc, {
         key, value: data2[key], status: 'added', format: '+',
       }];
@@ -33,6 +38,16 @@ export const getArrayExtension = (data1, data2) => {
 };
 
 export const stringiFy = (arrayData) => arrayData.map((extensionDate) => {
-  const resultKeyValue = ` ${extensionDate.format} ${extensionDate.key}: ${extensionDate.value}`;
+  const isNested = extensionDate.status === 'nested';
+  let resultKeyValue;
+  if (isNested) {
+    resultKeyValue = ` ${extensionDate.format} ${extensionDate.key}: 
+    {${stringiFy(extensionDate.value)}}`;
+  
+  }else {
+    resultKeyValue = ` ${extensionDate.format} ${extensionDate.key}: ${extensionDate.value}`;
+  }
+  
+  
   return resultKeyValue;
 }).join('\n');
