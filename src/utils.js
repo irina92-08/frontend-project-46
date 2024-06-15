@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const getArrayExtension = (data1, data2) => {
+const getArrayExtension = (data1, data2) => {
   const keyValueData1 = Object.keys(data1);
   const keyValueData2 = Object.keys(data2);
   const union = _.union(keyValueData1, keyValueData2);
@@ -13,7 +13,7 @@ export const getArrayExtension = (data1, data2) => {
     }
     if (!Object.hasOwn(data2, key)) {
       return [...acc, {
-        key, value: data1[key], status: 'deleted', format: '-',
+        key, value: data1[key], status: 'removed', format: '-',
       }];
     }
     if (data1[key] !== data2[key]) {
@@ -24,10 +24,10 @@ export const getArrayExtension = (data1, data2) => {
       }
 
       return [...acc, {
-        key, value: data1[key], status: 'changed', format: '-',
+        key, value: data1[key], status: 'updated', format: '-',
       },
       {
-        key, value: data2[key], status: 'changed', format: '+',
+        key, value: data2[key], status: 'updated', format: '+',
       }];
     }
 
@@ -38,28 +38,4 @@ export const getArrayExtension = (data1, data2) => {
   return _.sortBy(collData, ({ key }) => key);
 };
 
-const stringiFy = (data, depthData) => {
-  const iter = (node, depth) => {
-    if (!_.isObject(node)) {
-      return node;
-    }
-
-    const nodeKeyValue = Object.entries(node);
-    const repeatSymbol = ' '.repeat(depth);
-    const string = nodeKeyValue.map(([key, value]) => `\n   ${repeatSymbol} ${key}: ${iter(value, depth + 4)}`);
-    return ['{', ...string, `\n${repeatSymbol}}`].join('');
-  };
-  return iter(data, depthData + 2);
-};
-
-export const stylish = (arrayData) => {
-  const iter = (node, depth) => node.map((data) => {
-    const isNested = data.status === 'nested';
-    const repeat = ' '.repeat(depth);
-    if (!isNested) {
-      return `${repeat}${data.format} ${data.key}: ${stringiFy(data.value, depth)}`;
-    }
-    return `${repeat}${data.format} ${data.key}: {\n${iter(data.value, depth + 4)}\n${repeat}  }`;
-  }).join('\n');
-  return iter(arrayData, 2);
-};
+export default getArrayExtension;

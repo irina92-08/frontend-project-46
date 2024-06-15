@@ -10,3 +10,8 @@
 
 Comparison of two files with a nested structure of different formats
 [![asciicast](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R.png)](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R)
+
+The result of differences between files can be displayed in different ways: flat format or nested structure
+```gendiff --f stylish filepath1.json filepath2.json```
+```gendiff --format plain filepath1.json filepath2.json```
+[![asciicast](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6.png)](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6)
