@@ -15,3 +15,6 @@ The result of differences between files can be displayed in different ways: flat
 ```gendiff --f stylish file1 file2``` or 
 ```gendiff --format plain file1 file2```
 [![asciicast](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6.png)](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6)
+
+The result of differences between files in Json format
+[![asciicast](https://asciinema.org/a/tVW3SY14lVDE8Xgbncx3HTyNd.png)](https://asciinema.org/a/tVW3SY14lVDE8Xgbncx3HTyNd)
