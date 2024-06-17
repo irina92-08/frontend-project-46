@@ -22,10 +22,11 @@ const plain = (astData) => {
       case 'removed':
         return [...acc, `Property '${pathResult}' was ${node.status}`];
       case 'updated':
-        if (node.format === '-') {
-          return acc;
+        if (node.format === '+') {
+          const previousElement = array[index - 1].value;
+          return [...acc, `Property '${pathResult}' was updated. From ${valueStr(previousElement)} to ${valueStr(node.value)}`];
         }
-        return [...acc, `Property '${pathResult}' was updated. From ${valueStr(array[index - 1].value)} to ${valueStr(node.value)}`];
+        return acc;
       default:
         return acc;
     }
