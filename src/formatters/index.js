@@ -5,11 +5,13 @@ import jsonString from './json.js';
 const getFormatter = (data, format) => {
   switch (format) {
     case 'stylish':
-      return ['{', stylish(data), '}'].join('\n');
+      return stylish(data);
     case 'plain':
       return plain(data);
-    default:
+    case 'json':
       return jsonString(data);
+    default:
+      throw new Error(`Invalid format - ${format}`);
   }
 };
 export default getFormatter;

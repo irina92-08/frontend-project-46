@@ -14,7 +14,7 @@ const stringiFy = (data, depthData) => {
   return iter(data, depthData + 2);
 };
 
-const stylish = (astData) => {
+const stylishString = (astData) => {
   const iter = (node, depth) => node.map((data) => {
     const isNested = data.status === 'nested';
     const repeat = ' '.repeat(depth);
@@ -25,5 +25,7 @@ const stylish = (astData) => {
   }).join('\n');
   return iter(astData, 2);
 };
+
+const stylish = (data) => ['{', stylishString(data), '}'].join('\n');
 
 export default stylish;

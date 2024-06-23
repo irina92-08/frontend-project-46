@@ -49,3 +49,7 @@ test('gendiff yaml, yml. Formatter JSON', () => {
   expect(gendiff(pathFileYml1, pathFileYml2, 'json')).toBe(readExpect3);
   expect(gendiff(pathFileYaml1, pathFileYaml2, 'json')).toBe(readExpect3);
 });
+
+test('error', () => {
+  expect(() => gendiff(pathFile1, pathFile2, 'stl')).toThrow();
+});

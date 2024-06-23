@@ -31,6 +31,38 @@ gendiff filepath1.json filepath2.json
     }
 }
 ```
+<h2> Download, install and use:</h2>
+ 
+<p>cloning the project:</p>
+
+git clone git@github.com:irina92-08/frontend-project-46.git
+
+
+<p>initializing the project inside the root directory:</p> 
+
+```npm init```
+
+
+<p>installing dependencies:</p> 
+
+```make install``` or ```npm ci```
+
+
+<p>lobally installing the package from the local directory:</p> 
+
+```npm link```
+
+<p>running the program:</p> 
+
+```gendiff --f stylish file1 file2``` or 
+```gendiff --format plain file1 file2```
+
+<p>running the default program with formatting stylish:</p>
+
+```gendiff file1 file2```
+
+Help: ```gendiff -h``` or ```gendiff --help```
+
 
 Сomparison of two flat files with the extension .json
 [![asciicast](https://asciinema.org/a/xuOAXiuSleovWtKcpLVLtNnMv.png)](https://asciinema.org/a/xuOAXiuSleovWtKcpLVLtNnMv)
@@ -43,8 +75,6 @@ Comparison of two files with a nested structure of different formats
 [![asciicast](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R.png)](https://asciinema.org/a/z3MiSI47wIfP3dwJq0IOtge4R)
 
 The result of differences between files can be displayed in different ways: flat format or nested structure
-```gendiff --f stylish file1 file2``` or 
-```gendiff --format plain file1 file2```
 [![asciicast](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6.png)](https://asciinema.org/a/URdS3doLOoyTMo5cMDi5GAEv6)
 
 The result of differences between files in Json format

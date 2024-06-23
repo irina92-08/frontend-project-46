@@ -16,13 +16,12 @@ const getArrayExtension = (data1, data2) => {
         key, value: data1[key], status: 'removed', format: '-',
       }];
     }
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return [...acc, {
+        key, value: getArrayExtension(data1[key], data2[key]), status: 'nested', format: ' ',
+      }];
+    }
     if (data1[key] !== data2[key]) {
-      if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-        return [...acc, {
-          key, value: getArrayExtension(data1[key], data2[key]), status: 'nested', format: ' ',
-        }];
-      }
-
       return [...acc, {
         key, value: data1[key], status: 'updated', format: '-',
       },
@@ -30,7 +29,6 @@ const getArrayExtension = (data1, data2) => {
         key, value: data2[key], status: 'updated', format: '+',
       }];
     }
-
     return [...acc, {
       key, value: data1[key], status: 'unchanged', format: ' ',
     }];
