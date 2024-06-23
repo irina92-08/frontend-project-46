@@ -35,7 +35,7 @@ gendiff filepath1.json filepath2.json
  
 <p>cloning the project:</p>
 
-git clone git@github.com:irina92-08/frontend-project-46.git
+```git clone git@github.com:irina92-08/frontend-project-46.git```
 
 
 <p>initializing the project inside the root directory:</p> 
@@ -62,7 +62,6 @@ git clone git@github.com:irina92-08/frontend-project-46.git
 ```gendiff file1 file2```
 
 Help: ```gendiff -h``` or ```gendiff --help```
-
 
 Сomparison of two flat files with the extension .json
 [![asciicast](https://asciinema.org/a/xuOAXiuSleovWtKcpLVLtNnMv.png)](https://asciinema.org/a/xuOAXiuSleovWtKcpLVLtNnMv)
